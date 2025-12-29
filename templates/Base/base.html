@@ -1,0 +1,315 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Gallery Manager - Professional Image Management{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#7c3aed',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-in',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-pattern {
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.3), transparent 50%);
+        }
+
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-card:hover {
+            transform: scale(1.05);
+        }
+
+        .gradient-border {
+            position: relative;
+            background: white;
+            border-radius: 1rem;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1rem;
+            padding: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-800 flex flex-col min-h-screen">
+
+    <!-- ================= HEADER ================= -->
+    <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold gradient-text">Gallery Manager</h1>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Gallery</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Upload</a>
+                <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+                <a href="#"
+                    class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                    Sign In
+                </a>
+            </nav>
+            <!-- Mobile menu button -->
+            <button class="md:hidden text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="pb-24">
+        {% block content %}
+        <!-- Page specific content goes here -->
+        {% endblock %}
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-white">Gallery Manager</h4>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Professional image management platform built with Django for modern teams and creators.
+                    </p>
+                    <!-- Social Links -->
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-lg flex items-center justify-center transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-lg flex items-center justify-center transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+                            </svg>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-gray-800 hover:bg-indigo-600 rounded-lg flex items-center justify-center transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Product Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Product</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Features
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Pricing
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Security
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Roadmap
+                            </a></li>
+                    </ul>
+                </div>
+
+                <!-- Company Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Company</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> About Us
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Careers
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Blog
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Press Kit
+                            </a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Help Center
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Documentation
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> API Reference
+                            </a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition-colors flex items-center">
+                                <span class="mr-2">→</span> Contact Us
+                            </a></li>
+                    </ul>
+                    <div class="mt-6">
+                        <p class="text-sm text-gray-400 mb-2">Email us</p>
+                        <a href="mailto:support@gallerymanager.com"
+                            class="text-white hover:text-indigo-400 transition-colors font-medium">
+                            support@gallerymanager.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="border-t border-gray-800 pt-12 pb-8">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h4 class="text-2xl font-bold text-white mb-3">Stay Updated</h4>
+                    <p class="text-gray-400 mb-6">Get the latest features, tips, and updates delivered to your inbox.
+                    </p>
+                    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input type="email" placeholder="Enter your email"
+                            class="flex-1 px-6 py-3 rounded-full bg-gray-800 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors" />
+                        <button type="submit"
+                            class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 whitespace-nowrap">
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-sm text-gray-500">
+                    © {{ now|date:"Y" }} Gallery Manager. All rights reserved.
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 text-sm">
+                    <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors">Cookie Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors">GDPR</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

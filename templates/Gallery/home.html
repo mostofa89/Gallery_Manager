@@ -1,0 +1,179 @@
+{% extends "Base/base.html" %}
+
+{% block content %}
+    <!-- ================= HERO SECTION ================= -->
+    <section
+        class="relative bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800 text-white overflow-hidden hero-pattern">
+        <!-- Decorative elements -->
+        <div
+            class="absolute top-0 left-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse">
+        </div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"
+            style="animation-delay: 1s;"></div>
+    
+        <div class="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
+            <div class="text-center space-y-8 animate-fade-in">
+                <div class="inline-block">
+                    <span class="glass-effect text-sm font-semibold px-4 py-2 rounded-full">
+                        ✨ Professional Image Management
+                    </span>
+                </div>
+    
+                <h2 class="text-5xl md:text-7xl font-extrabold leading-tight">
+                    Manage Your Gallery
+                    <span class="block bg-clip-text text-transparent bg-gradient-to-r from-pink-200 to-purple-200">
+                        Beautifully & Efficiently
+                    </span>
+                </h2>
+    
+                <p class="text-xl md:text-2xl max-w-3xl mx-auto text-indigo-100 leading-relaxed">
+                    Upload, organize, and showcase your images with our powerful Django-based platform.
+                    Experience seamless image management with enterprise-grade security.
+                </p>
+    
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6">
+                    <a href="#"
+                        class="group bg-white text-indigo-600 px-8 py-4 rounded-full font-bold hover:bg-gray-50 transition-all duration-300 shadow-2xl hover:shadow-indigo-500/50 hover:scale-105 flex items-center space-x-2">
+                        <span>Get Started Free</span>
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                    <a href="#"
+                        class="glass-effect text-white px-8 py-4 rounded-full font-bold hover:bg-white/20 transition-all duration-300 flex items-center space-x-2">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                        </svg>
+                        <span>Watch Demo</span>
+                    </a>
+                </div>
+    
+                <!-- Stats -->
+                <div class="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-12">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold">50K+</div>
+                        <div class="text-indigo-200 text-sm mt-1">Active Users</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold">2M+</div>
+                        <div class="text-indigo-200 text-sm mt-1">Images Managed</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold">99.9%</div>
+                        <div class="text-indigo-200 text-sm mt-1">Uptime</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ================= FEATURES SECTION ================= -->
+    <section class="max-w-7xl mx-auto px-6 py-24">
+        <div class="text-center mb-16 animate-slide-up">
+            <h3 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+                Powerful Features
+            </h3>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Everything you need to manage your image gallery professionally
+            </p>
+        </div>
+    
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="feature-card gradient-border bg-white p-8 rounded-2xl shadow-lg hover-lift">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Easy Upload</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Drag and drop or click to upload. Support for multiple formats with automatic optimization and
+                    thumbnail generation.
+                </p>
+            </div>
+    
+            <!-- Feature 2 -->
+            <div class="feature-card gradient-border bg-white p-8 rounded-2xl shadow-lg hover-lift">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Lightning Fast</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Edit, delete, and organize your gallery with blazing speed. Advanced caching ensures instant load
+                    times.
+                </p>
+            </div>
+    
+            <!-- Feature 3 -->
+            <div class="feature-card gradient-border bg-white p-8 rounded-2xl shadow-lg hover-lift">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Bank-Level Security</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Built on Django's robust authentication system with encrypted storage and advanced permission
+                    controls.
+                </p>
+            </div>
+    
+            <!-- Feature 4 -->
+            <div class="feature-card gradient-border bg-white p-8 rounded-2xl shadow-lg hover-lift">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Smart Organization</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    AI-powered tagging and categorization. Create custom albums and collections with ease.
+                </p>
+            </div>
+    
+            <!-- Feature 5 -->
+            <div class="feature-card gradient-border bg-white p-8 rounded-2xl shadow-lg hover-lift">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Team Collaboration</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Share galleries with team members. Role-based permissions and real-time collaboration tools.
+                </p>
+            </div>
+    
+            <!-- Feature 6 -->
+            <div class="feature-card gradient-border bg-white p-8 rounded-2xl shadow-lg hover-lift">
+                <div
+                    class="w-16 h-16 bg-gradient-to-br from-violet-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold mb-3 text-gray-900">Analytics Dashboard</h3>
+                <p class="text-gray-600 leading-relaxed">
+                    Track views, downloads, and engagement. Get insights to optimize your gallery performance.
+                </p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
