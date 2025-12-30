@@ -124,6 +124,17 @@
         .gradient-border:hover::before {
             opacity: 1;
         }
+
+        /* Mobile menu styles */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
     </style>
 </head>
 
@@ -131,38 +142,144 @@
 
     <!-- ================= HEADER ================= -->
     <header class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <div class="flex items-center space-x-3">
-                <div
-                    class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+        <div class="max-w-7xl mx-auto px-6 py-5">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h1 class="text-2xl font-bold gradient-text">Gallery Manager</h1>
                 </div>
-                <h1 class="text-2xl font-bold gradient-text">Gallery Manager</h1>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="{% url 'home' %}" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Gallery</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Upload</a>
+                    <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+
+                    {% if user.is_authenticated %}
+                    <!-- Logged In State -->
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2 px-4 py-2 bg-indigo-50 rounded-full">
+                            <div
+                                class="w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center">
+                                <span class="text-white text-sm font-bold">{{ user.username|slice:":1"|upper }}</span>
+                            </div>
+                            <span class="text-gray-700 font-medium">{{ user.username }}</span>
+                        </div>
+                        <a href="{% url 'user-logout' %}"
+                            class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                            Logout
+                        </a>
+                    </div>
+                    {% else %}
+                    <!-- Logged Out State -->
+                    <div class="flex items-center space-x-3">
+                        <a href="{% url 'user-login' %}"
+                            class="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
+                            Login
+                        </a>
+                        <a href="{% url 'user-register' %}"
+                            class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
+                            Sign Up
+                        </a>
+                    </div>
+                    {% endif %}
+                </nav>
+
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
             </div>
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Gallery</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Upload</a>
-                <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
-                <a href="#"
-                    class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
-                    Sign In
-                </a>
-            </nav>
-            <!-- Mobile menu button -->
-            <button class="md:hidden text-gray-700">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <nav class="pt-4 pb-3 space-y-2">
+                    <a href="{% url 'home' %}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">Home</a>
+                    <a href="#"
+                        class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">Gallery</a>
+                    <a href="#"
+                        class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">Upload</a>
+                    <a href="#"
+                        class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">Contact</a>
+
+                    {% if user.is_authenticated %}
+                    <div class="px-4 py-3 bg-indigo-50 rounded-lg">
+                        <p class="text-sm text-gray-600">Logged in as</p>
+                        <p class="font-semibold text-indigo-600">{{ user.username }}</p>
+                    </div>
+                    <a href="{% url 'user-logout' %}"
+                        class="block px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg text-center font-semibold transition-colors">
+                        Logout
+                    </a>
+                    {% else %}
+                    <a href="{% url 'user-login' %}"
+                        class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">
+                        Login
+                    </a>
+                    <a href="{% url 'user-register' %}"
+                        class="block px-4 py-2 text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-center font-semibold transition-colors">
+                        Sign Up
+                    </a>
+                    {% endif %}
+                </nav>
+            </div>
         </div>
     </header>
 
+    <!-- ================= MESSAGES ================= -->
+    {% if messages %}
+    <div class="max-w-7xl mx-auto px-6 py-4">
+        {% for message in messages %}
+        <div class="mb-3 px-6 py-4 rounded-xl shadow-md animate-slide-up
+            {% if message.tags == 'success' %}bg-green-50 border-l-4 border-green-500 text-green-800
+            {% elif message.tags == 'error' %}bg-red-50 border-l-4 border-red-500 text-red-800
+            {% elif message.tags == 'warning' %}bg-yellow-50 border-l-4 border-yellow-500 text-yellow-800
+            {% else %}bg-blue-50 border-l-4 border-blue-500 text-blue-800{% endif %}">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    {% if message.tags == 'success' %}
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {% elif message.tags == 'error' %}
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {% else %}
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {% endif %}
+                    <p class="font-medium">{{ message }}</p>
+                </div>
+                <button onclick="this.parentElement.parentElement.remove()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <!-- ================= MAIN CONTENT ================= -->
-    <main class="pb-24">
+    <main class="flex-grow pb-24">
         {% block content %}
         <!-- Page specific content goes here -->
         {% endblock %}
@@ -298,7 +415,7 @@
             <!-- Bottom Bar -->
             <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                 <p class="text-sm text-gray-500">
-                    © {{ now|date:"Y" }} Gallery Manager. All rights reserved.
+                    © 2024 Gallery Manager. All rights reserved.
                 </p>
                 <div class="flex flex-wrap justify-center gap-6 text-sm">
                     <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors">Privacy Policy</a>
@@ -309,6 +426,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function () {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        });
+    </script>
 
 </body>
 

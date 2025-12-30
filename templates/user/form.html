@@ -1,0 +1,20 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <form method="POST" enctype="mu">
+        <h2 class="text-2xl font-bold mb-6 text-center">Create an Account</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"
+            class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition shadow-lg mt-6">
+            Sign Up
+        </button>
+        <div class="mt-6 text-center">
+            <p class="text-gray-600">
+                Already have an account?
+                <a href="{% url 'user-login' %}" class="text-indigo-600 font-semibold hover:underline">
+                    Log in
+                </a>
+            </p>
+        </div>
+    </form>
+    
+</div>
