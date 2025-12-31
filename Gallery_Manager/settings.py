@@ -129,4 +129,7 @@ AUTH_USER_MODEL = 'user.User'
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Login URL
+LOGIN_URL = 'user/login'
+
 

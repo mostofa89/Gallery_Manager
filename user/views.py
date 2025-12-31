@@ -29,7 +29,7 @@ def login_view(request):
                login(request, user)
                message.success(request, 'Login successful.')
                print("Login successful.")
-               return redirect('home')
+               return redirect('gallery:gallery')
             
             else:
                 message.error(request, 'Invalid username or password.')
@@ -45,4 +45,4 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     message.success(request, 'You have been logged out.')
-    return redirect('user-login')
+    return redirect('user:login')

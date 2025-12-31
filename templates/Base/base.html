@@ -158,8 +158,8 @@
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex items-center space-x-8">
                     <a href="{% url 'home' %}" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Home</a>
-                    <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Gallery</a>
-                    <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Upload</a>
+                    <a href="{% url 'gallery:gallery' %}" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Gallery</a>
+                    <a href="{% url 'gallery:upload' %}" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Upload</a>
                     <a href="#" class="nav-link text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
 
                     {% if user.is_authenticated %}
@@ -172,7 +172,7 @@
                             </div>
                             <span class="text-gray-700 font-medium">{{ user.username }}</span>
                         </div>
-                        <a href="{% url 'user-logout' %}"
+                        <a href="{% url 'user:logout' %}"
                             class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
                             Logout
                         </a>
@@ -180,11 +180,11 @@
                     {% else %}
                     <!-- Logged Out State -->
                     <div class="flex items-center space-x-3">
-                        <a href="{% url 'user-login' %}"
+                        <a href="{% url 'user:login' %}"
                             class="text-gray-700 hover:text-indigo-600 font-medium transition-colors">
                             Login
                         </a>
-                        <a href="{% url 'user-register' %}"
+                        <a href="{% url 'user:register' %}"
                             class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2.5 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300">
                             Sign Up
                         </a>
@@ -218,16 +218,16 @@
                         <p class="text-sm text-gray-600">Logged in as</p>
                         <p class="font-semibold text-indigo-600">{{ user.username }}</p>
                     </div>
-                    <a href="{% url 'user-logout' %}"
+                    <a href="{% url 'user:logout' %}"
                         class="block px-4 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg text-center font-semibold transition-colors">
                         Logout
                     </a>
                     {% else %}
-                    <a href="{% url 'user-login' %}"
+                    <a href="{% url 'user:login' %}"
                         class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg transition-colors">
                         Login
                     </a>
-                    <a href="{% url 'user-register' %}"
+                    <a href="{% url 'user:register' %}"
                         class="block px-4 py-2 text-white bg-gradient-to-r from-indigo-600 to-purple-600 rounded-lg text-center font-semibold transition-colors">
                         Sign Up
                     </a>
